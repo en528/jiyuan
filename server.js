@@ -18,11 +18,11 @@ server.get('/', function(req, res){
 });
 
 server.get('/hiscore', function(req, res){
-     Game.find({}).sort({score:-1}).limit(10).then(result=>{
+     //將排序依據改為 level
+     Game.find({}).sort({level:-1}).limit(10).then(result=>{
         console.log(result);
         res.send(result);
     })
-    
 });
 server.post('/hiscore', function(req, res){
     Game.insert(req.body);
@@ -34,10 +34,5 @@ server.post('/hiscore', function(req, res){
 //     res.send("Page not found!", 404);
 // })
 
-//server.listen(80);
-//console.log("Web server on port 8080");
-
-var port = process.env.PORT || 8080;
-server.listen(port, () => {
-    console.log("Web server is running on port " + port);
-});
+server.listen(80);
+console.log("Web server on port 8080");
